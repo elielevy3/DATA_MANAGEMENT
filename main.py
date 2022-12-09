@@ -64,7 +64,7 @@ categorie_colors = dict(zip(set(q_sub["categorie"]) , colors))
 nb_questions_sub = 4
 
 # get n questions
-questions = get_sample_question(q_sub, nb_questions_sub, st.experimental_user["email"], date.today())
+questions = get_sample_question(q_sub, nb_questions_sub, date.today())
 
 for i, question in enumerate(questions):
 
