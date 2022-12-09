@@ -1,9 +1,9 @@
 import streamlit as st
 import pandas as pd
-from datetime import datetime
 from random import sample
-from annotated_text import annotated_text
+import annotated_text
 from streamlit_extras.colored_header import colored_header
+
 
 st.set_page_config(page_title="WEWYSE DATA MANAGEMENT TESTING", page_icon="📚")
 
@@ -72,8 +72,7 @@ for i, question in enumerate(questions):
     # writing the question
     intitule = q_sub["Question"][question]
     st.write(intitule)
-    #annotated_text("",("Categorie", data["categorie"][question], categorie_colors[data["categorie"][question]]))
-    annotated_text(" ",("Categorie", q_sub["categorie"][question], categorie_colors[q_sub["categorie"][question]]))
+    annotated_text.annotated_text(" ",("Categorie", q_sub["categorie"][question], categorie_colors[q_sub["categorie"][question]]))
     submitted_answers[intitule] = st.text_area(" ", max_chars=400, key=i+nb_questions_sub)
     st.write("-----------------------------------")
 
