@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 from random import sample
-import annotated_text
+from annotated_text import annotated_text
 from streamlit_extras.colored_header import colored_header
 
 
@@ -72,7 +72,7 @@ for i, question in enumerate(questions):
     # writing the question
     intitule = q_sub["Question"][question]
     st.write(intitule)
-    annotated_text.annotated_text(" ",("Categorie", q_sub["categorie"][question], categorie_colors[q_sub["categorie"][question]]))
+    annotated_text(" ",("Categorie", q_sub["categorie"][question], categorie_colors[q_sub["categorie"][question]]))
     submitted_answers[intitule] = st.text_area(" ", max_chars=400, key=i+nb_questions_sub)
     st.write("-----------------------------------")
 
