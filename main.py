@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 from random import sample
+from datetime import date
 from annotated_text import annotated_text
 from streamlit_extras.colored_header import colored_header
 
@@ -8,7 +9,7 @@ from streamlit_extras.colored_header import colored_header
 st.set_page_config(page_title="WEWYSE DATA MANAGEMENT TESTING", page_icon="📚")
 
 @st.experimental_memo
-def get_sample_question(data, nb_of_questions, user):
+def get_sample_question(data, nb_of_questions, time_param):
     return sample(range(1, len(data)), nb_of_questions)
 
 st.markdown("# 📚 WELCOME TO WEWYSE DATA MANAGEMENT TESTING !")
@@ -63,7 +64,7 @@ categorie_colors = dict(zip(set(q_sub["categorie"]) , colors))
 nb_questions_sub = 4
 
 # get n questions
-questions = get_sample_question(q_sub, nb_questions_sub, st.experimental_user["email"])
+questions = get_sample_question(q_sub, nb_questions_sub, st.experimental_user["email"], date.today())
 
 for i, question in enumerate(questions):
 
