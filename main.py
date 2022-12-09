@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+from datetime import datetime
 from random import sample
 from annotated_text import annotated_text
 from streamlit_extras.colored_header import colored_header
@@ -7,7 +8,7 @@ from streamlit_extras.colored_header import colored_header
 st.set_page_config(page_title="WEWYSE DATA MANAGEMENT TESTING", page_icon="📚")
 
 @st.experimental_memo
-def get_sample_question(data, nb_of_questions):
+def get_sample_question(data, nb_of_questions, user):
     return sample(range(1, len(data)), nb_of_questions)
 
 st.markdown("# 📚 WELCOME TO WEWYSE DATA MANAGEMENT TESTING !")
@@ -49,6 +50,8 @@ st.write("#")
 ######### QUESTIONS SUBSIDIAIRES ##########
 ###########################################
 
+
+
 colored_header(label="Questions subsidiaires : ", color_name="orange-70",description=" ")
 
 q_sub = pd.read_csv("questions_subsidiaires.csv", sep=";")
@@ -60,7 +63,7 @@ categorie_colors = dict(zip(set(q_sub["categorie"]) , colors))
 nb_questions_sub = 4
 
 # get n questions
-questions = get_sample_question(q_sub, nb_of_questions=nb_questions_sub)
+questions = get_sample_question(q_sub, nb_questions_sub, st.experimental_user["email"])
 
 for i, question in enumerate(questions):
 
@@ -75,7 +78,8 @@ for i, question in enumerate(questions):
     st.write("-----------------------------------")
 
 
-if st.sidebar.button(label="Submit answers"):
+if st.sidebar.button(label="Soumettre les réponses"):
     st.header("A ENVOYER PAR MAIL")
     df = pd.DataFrame(list(zip(submitted_answers.keys(), submitted_answers.values())), columns=["Question", "Réponses"])
     st.dataframe(df)
+
